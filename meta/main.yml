@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  author: Simon Dietschi
+  description: SSH hardening role for Ansible
+  company: Tinkers
+  license: MIT
+  min_ansible_version: 2.0
+  platforms:
+    - name: EL
+      versions:
+        - 7
+        - 6
+    - name: Darwin
+      versions:
+        - 10.11
+        - 10.12
+  galaxy_tags:
+    - system
+    - hardening
+dependencies: []
