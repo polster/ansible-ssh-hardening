@@ -9,8 +9,16 @@ sshd_allow_users: ""
 # Sets the users being denied to login over SSH if specified
 sshd_deny_users: ""
 
-# Define the global auth method
+# Define the global auth methods applying to all users/groups.
+# For example, 'publickey,password' forces a combinded authentication where
+# the user first must present a trusted SSH-key and then enter the
+# SSH user's password
 sshd_auth_methods: ""
+
+# Define the auth methods per user. For example:
+# sshd_match_users:
+#   - { user: 'inventory', auth_method: 'password' }
+sshd_match_users: []
 
 # Decide if password auth should be allowed or not
 sshd_password_auth: "yes"

@@ -77,21 +77,26 @@ GSSAPIAuthentication no
 GSSAPICleanupCredentials yes
 
 {% if sshd_auth_methods -%}
+# Global auth methods for all users
 AuthenticationMethods {{sshd_auth_methods}}
 {% endif %}
-
+{% if sshd_match_users -%}
+{% for user in sshd_match_users %}
+# Individual rules for user {{user.user}}
+Match User {{user.user}}
+  AuthenticationMethods {{user.auth_method}}
+{% endfor %}
+Match all
+{% endif %}
 {% if sshd_deny_users -%}
 DenyUsers {{sshd_deny_users}}
 {% endif %}
-
 {% if sshd_allow_users -%}
 AllowUsers {{sshd_allow_users}}
 {% endif %}
-
 {% if sshd_deny_groups -%}
 DenyGroups {{sshd_deny_groups}}
 {% endif %}
-
 {% if sshd_allow_groups -%}
 AllowGroups {{sshd_allow_groups}}
 {% endif %}
